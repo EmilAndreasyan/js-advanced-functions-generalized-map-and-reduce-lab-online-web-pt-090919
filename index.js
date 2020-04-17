@@ -1,13 +1,21 @@
 // Add your functions here
 
-let map = function(source){
+function map(src, cb) {
   let result = []
-  for(let i = 0; i < source.length; i++){
-    result.push(source[i] * -1)
+
+  for (let i = 0; i < src.length; i++) {
+    result.push(cb(src[i]))
   }
-  return result
+  return result;
 }
 
-function mapCallback (map){
-  result.push(source[i])
+function reduce(src, cb, starting){
+  let r = (!!starting) ? starting : src[0] // r = starting if staring is true, esle src first element
+  let i = (!!starting) ? 0 : 1 // index = 0 if starting is true, else 1
+
+  for (; i < src.length; i++) {
+    r = cb(src[i], r)
+  }
+
+  return r;
 }
